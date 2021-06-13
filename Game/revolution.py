@@ -18,7 +18,8 @@ table = {
 "x":"money",
 "i":"items",
 "p":"people",
-"n":"name"
+"n":"name",
+"e":"enemies"
 }
 def generate_newspaper(sentences, whitespace,stats):
     final = []

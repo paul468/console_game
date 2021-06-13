@@ -14,7 +14,16 @@
                     "property":"items","operand":"+", "right":["flyer"]
                 }
             ],
-            "random":[true, 50]
+            "random":[true, 10]
+        },
+        {
+            "sentences":["The $e enemies have recruited a new soldier!"],
+            "effects":[
+                {
+                    "property":"enemies","operand":"+", "right":1
+                }
+            ],
+            "random":[true, 75]
         }
 
     ]
