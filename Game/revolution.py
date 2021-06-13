@@ -133,6 +133,10 @@ def consume(*args):
     
 @game_command
 def newday(*args):
+    if args[1]["people"] > 0:
+        print("Your people pay you to help you in your operations!")
+        args[1]["money"] += 10 * args[1]["people"]
+    print(f"You get {args[1]['people']*10}")
     for i in generation["situations"]:
         chance = i["random"][1]
         roll = random.randint(0, 100)
