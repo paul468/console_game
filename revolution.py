@@ -108,7 +108,7 @@ def consume(*args):
     item = input("Enter the name of the item:")
     consumed = False
     for i in args[1]["items"]:
-        if i["name"] == item and not consumed:
+        if i["name"] == item:
             for j in i["properties"]:
                 if j["property"] != "items":
                     
@@ -124,9 +124,9 @@ def consume(*args):
                     if l["operand"] == "+":
                         for k in j["right"]:
                             args[1][j["property"]].append(items[k])                    
-    for i in range(len(args[1]["items"])):
-        if args[1]["items"][i]["name"] == item and not consumed:
-            args[1]["items"].pop(i)
+    for i in args[1]["items"]:
+        if i["name"] == item and not consumed:
+            args[1]["items"].remove(i)
             consumed = True
     print("everything went to plan!")
     
