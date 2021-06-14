@@ -1,4 +1,4 @@
-import os, json, random, time, formatting
+import os, json, random, time
 
 
 
@@ -21,6 +21,21 @@ table = {
 "n":"name",
 "e":"enemies"
 }
+def form(string,symbol,table,stats):
+    f = []
+    final = ""
+    for i in string:
+        f.append(i)
+    for i in range(len(f)):
+        if f[i] == symbol or f[i] == "":
+            final += str(stats[table[f[i+1]]])
+        else:
+            if f[i] not in table.keys() or f[i-1] != symbol:
+                final += f[i]
+            elif f[i] != symbol:
+                final += " "
+    return final
+
 def color(text):
     string = ""
     for l in text["before"]:
@@ -33,7 +48,7 @@ def color(text):
 def generate_newspaper(sentences, whitespace,stats):
     final = []
     for i in sentences:
-        final.append(("¬| "+formatting.form(i, "$", table, stats)+" |¬").replace("  ", " "))
+        final.append(("¬| "+form(i, "$", table, stats)+" |¬").replace("  ", " "))
     final.append("\n")
     return final
 def register_item(item:dict, alias):
@@ -128,7 +143,7 @@ def consume(*args):
                     elif j["operand"] == "*":
                         args[1][j["property"]] *= j["right"]
                 else:
-                    if l["operand"] == "+":
+                    if j["operand"] == "+":
                         for k in j["right"]:
                             args[1][j["property"]].append(items[k])                    
     for i in args[1]["items"]:
