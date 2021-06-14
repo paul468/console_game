@@ -21,6 +21,7 @@ table = {
 "n":"name",
 "e":"enemies"
 }
+color = colors.colors.color
 def generate_newspaper(sentences, whitespace,stats):
     final = []
     for i in sentences:
@@ -29,14 +30,9 @@ def generate_newspaper(sentences, whitespace,stats):
     return final
 def register_item(item:dict, alias):
     table[alias] = item["name"]
-    with open("items.json", "r+") as f:
-        pass
-with open("situations.json") as l:
-    situations = json.load(l)
-with open("generation.json") as l:
-    generation = json.load(l)
-with open("items.json") as l:
-    items = json.load(l)
+    items[item["name"]] = item
+
+
 def game_command(func):
     commands.append(func)
     return func
@@ -174,29 +170,35 @@ def clear(*args):
     os.system('clear')
             
 
-color = colors.colors.color
-console = input(color({"after":["\033[0m"],"before":["\033[92m"],"string":"Hello! How are you today! Enter a Command ([Load] for loading a Save File, [Create] for creating a new game)"})).lower()
-
-if console == "create":
-    print("Note that you can't name two characters the same or your save files will be corrupted.")
-    newbie = True
-    name = input("Please Enter the Name of your Character: ")
-    statistics = {"name":name, "money":10, "items":[], "people":0}
-    f=open(name+".json", "w+")
-elif console == "load":
-    name = input("Please Enter the Name of your Character: ")
-    f=open(name+".json")
-    statistics = json.load(f)
 
 
-news = generate_newspaper(["Welcome!", "We have loaded up the game."], " ", statistics)
-render_news(news)
 def main():
-    global statistics, name, f
+    global situations, generation, items
+    with open("situations.json") as l:
+        situations = json.load(l)   
+    with open("generation.json") as l:
+        generation = json.load(l)
+    with open("items.json") as l:
+        items = json.load(l)
+
+    console = input(color({"after":["\033[0m"],"before":["\033[92m"],"string":"Hello! How are you today! Enter a Command ([Load] for loading a Save File, [Create] for creating a new game)"})).lower()
+
+    if console == "create":
+        print("Note that you can't name two characters the same or your save files will be corrupted.")
+        newbie = True
+        name = input("Please Enter the Name of your Character: ")
+        statistics = {"name":name, "money":10, "items":[], "people":0}
+        f=open(name+".json", "w+")
+    elif console == "load":
+        name = input("Please Enter the Name of your Character: ")
+        f=open(name+".json")
+        statistics = json.load(f)
+
+    news = generate_newspaper(["Welcome!", "We have loaded up the game."], " ", statistics)
+    render_news(news)
     exited = False
     while not exited:
         command = input("Please Enter a Command: ").lower()
         for i in commands:
             if i.__name__ == command:
                 i(f, statistics)
-main()
