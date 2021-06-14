@@ -7,13 +7,8 @@
         },
         {
             "sentences":["You have no money. You died."],
-            "conditions":[{"property":"money", "operand":"<=", "comparand":0}, {"property":"people", "operand":">=", "comparand":1}],
+            "conditions":[{"property":"money", "operand":"<=", "comparand":0}, {"property":"people", "operand":"<=", "comparand":1}],
             "func":"leave"
-        },
-        {
-            "sentences":["Welcome!", "You are starting out your journey,","here are 10 Bucks to help you get started!"],
-            "conditions":[{"property":"money", "operand":"<=", "comparand":0}, {"property":"people", "operand":"<", "comparand":1}],
-            "func":"reset"
         }
     ]
 }

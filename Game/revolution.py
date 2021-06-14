@@ -201,11 +201,12 @@ def newday(*args):
             
     for i in situations["situations"]:        
         if compare(i, args):
+            n = generate_newspaper(i["sentences"], "", args[1])
+            render_news(n)
             for j in triggers:
                 if j.__name__ == i["func"]:
                     j(*args)
-            n = generate_newspaper(i["sentences"], "", args[1])
-            render_news(n)
+            
     args[1]["days"]+=1
 @game_command
 def clear(*args):
@@ -230,11 +231,12 @@ def main():
         newbie = True
         name = input("Please Enter the Name of your Character: ")
         statistics["name"] = name
-        statistics["money"] = 10
+        statistics["money"] = 0
         statistics["items"] = []
-        statistics["people"] = 0
+        statistics["people"] = 1
         statistics["enemies"] = 1000000
         statistics["days"] = 0
+        statistics["noticed"] = False
         f=open(name+".json", "w+")
     elif console == "load":
         name = input("Please Enter the Name of your Character: ")
