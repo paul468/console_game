@@ -192,7 +192,7 @@ def newday(*args):
         if compare(i, args):
             for j in commands:
                 if j.__name__ == i["func"]:
-                    j(args[0], args[1])
+                    j(*args)
             n = generate_newspaper(i["sentences"], "", args[1])
             render_news(n)
     args[1]["days"]+=1

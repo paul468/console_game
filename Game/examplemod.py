@@ -51,7 +51,8 @@ revolution.register_item(custom_item)
 #adding a new property
 revolution.add_prop("kills", "k", 0)
 #registering the death
-revolution.register_death(custom_death)
+revolution.add_death(custom_death)
 #registering the occasion
-revolution.register_bonus(custom_bonus)
+revolution.add_bonus(custom_bonus)
+
 revolution.main()
