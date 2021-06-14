@@ -6,6 +6,16 @@
         "description":": increases the amount of people upon consumption.",
         "properties":[
         {"property":"people", "operand":"+", "right":1}
-        ]
+        ],
+        "probability":100
+    },
+    "epic spy pen":{
+        "name":"epic spy pen",
+        "price":"100",
+        "description":"This is a disguised bomb that can be deposited to kill up to 1000 people of the government.",
+        "properties":[
+            {"property":"enemies", "operand":"-", "right":1000}
+        ],
+        "probability":50
     }
 }

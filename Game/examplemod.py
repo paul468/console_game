@@ -8,21 +8,17 @@ def debug(*args):
 	for i in args[3]:
 		print(i)
 
-#template for an item
+#template for an item, probability is the chance, that it is going to be on the market.
 custom_item = {
 "name":"airplane",
 "price":"1",
 "description":"This is a testing object.",
 "properties":[
 {"property":"money","operand":"+", "right":1}
-]
+],
+"probability":100
 }
 
-
-def add_prop(name, alias, default_value):
-    print("setting property...")
-    revolution.table[name] = alias
-    revolution.statistics[name] = default_value
 
 
 #template for a death, triggered function is customisable
