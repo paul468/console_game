@@ -2,6 +2,8 @@ import revolution
 
 # this decorator registers this function as a command and can be called in game via calling the name of the function.
 @revolution.game_command
+#this decorator registers this function to be able to be triggered by deaths.
+@revolution.trigger_func
 def debug(*args):
 	
 	#args is a number of arguments: the 0th element is the save file of the player, the 1st element is the inventory, the 2nd is the generation (look into generation.json, these are the bonuses that can occur), 3rd are ALL items, 4th is the situations (look into situations.json), which are the deaths.
@@ -21,7 +23,7 @@ custom_item = {
 
 
 
-#template for a death, triggered function is customisable
+#template for a death, triggered function is customisable, debug refers to the function above. the functions you want to have to be called, they have to have the trigger_func function decorator.
 custom_death = {
 "sentences":["This is a test", "death with two sentences.", "You have $x money."],
 "conditions":[

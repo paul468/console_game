@@ -12,6 +12,7 @@ situations = {}
 generation = {}
 dead = False
 statistics={}
+triggers = []
 items = {}
 table = {
 "d":"days",
@@ -68,6 +69,11 @@ def add_bonus(bonus:dict):
 def game_command(func):
     commands.append(func)
     return func
+
+def trigger_func(func):
+    triggers.append(func)
+    return func
+
 @game_command
 def reset(*args):
     args[1]["money"] = 10
@@ -77,7 +83,9 @@ def save_stats(*args):
     f.write(to_str(args[1]))
     f.close()
     f=open(args[1]["name"]+".json", "r+")
+    
 @game_command
+@trigger_func
 def leave(*args):
     save_stats(args[0], args[1])
     quit()
@@ -151,6 +159,8 @@ def consume(*args):
                         args[1][j["property"]] /= j["right"]
                     elif j["operand"] == "*":
                         args[1][j["property"]] *= j["right"]
+                    elif j["operand"] == "=":
+                        args[1][j["property"]] = j["right"]
                 else:
                     if j["operand"] == "+":
                         for k in j["right"]:
@@ -191,7 +201,7 @@ def newday(*args):
             
     for i in situations["situations"]:        
         if compare(i, args):
-            for j in commands:
+            for j in triggers:
                 if j.__name__ == i["func"]:
                     j(*args)
             n = generate_newspaper(i["sentences"], "", args[1])
