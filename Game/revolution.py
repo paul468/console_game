@@ -83,7 +83,7 @@ def save_stats(*args):
     f.write(to_str(args[1]))
     f.close()
     f=open(args[1]["name"]+".json", "r+")
-    
+
 @game_command
 @trigger_func
 def leave(*args):
@@ -233,7 +233,7 @@ def main():
         statistics["money"] = 10
         statistics["items"] = []
         statistics["people"] = 0
-        statistics["enemies"] = 0
+        statistics["enemies"] = 1000000
         statistics["days"] = 0
         f=open(name+".json", "w+")
     elif console == "load":
