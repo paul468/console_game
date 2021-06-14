@@ -18,6 +18,13 @@ custom_item = {
 ]
 }
 
+
+def add_prop(name, alias, default_value):
+    print("setting property...")
+    revolution.table[name] = alias
+    revolution.statistics[name] = default_value
+
+
 #template for a death, triggered function is customisable
 custom_death = {
 "sentences":["This is a test", "death with two sentences.", "You have $x money."],

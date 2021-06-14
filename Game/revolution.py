@@ -55,6 +55,7 @@ def register_item(item:dict):
     items[item["name"]] = item
 
 def add_prop(name, alias, default_value):
+
     table[name] = alias
     statistics[name] = default_value
 
@@ -228,7 +229,9 @@ def main():
     elif console == "load":
         name = input("Please Enter the Name of your Character: ")
         f=open(name+".json")
-        statistics = json.load(f)
+        loads = json.load(f)
+        for i in loads:
+            statistics[i] = loads[i]
 
     news = generate_newspaper(["Welcome!", "We have loaded up the game."], " ", statistics)
     render_news(news)
