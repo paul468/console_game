@@ -1,0 +1,3 @@
+import revolution
+
+revolution.main()
