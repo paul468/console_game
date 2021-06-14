@@ -27,8 +27,8 @@ def generate_newspaper(sentences, whitespace,stats):
         final.append(("¬| "+formatting.form(i, "$", table, stats)+" |¬").replace("  ", " "))
     final.append("\n")
     return final
-
-
+def register_item(item:dict):
+    pass
 with open("situations.json") as l:
     situations = json.load(l)
 with open("generation.json") as l:
