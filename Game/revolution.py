@@ -224,4 +224,4 @@ def main():
         command = input("Please Enter a Command: ").lower()
         for i in commands:
             if i.__name__ == command:
-                i(f, statistics)
+                i(f, statistics, generation, items, situations)
