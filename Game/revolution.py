@@ -1,4 +1,4 @@
-import os, json, random, colors.colors, time, formatting
+import os, json, random, time, formatting
 
 
 
@@ -21,7 +21,15 @@ table = {
 "n":"name",
 "e":"enemies"
 }
-color = colors.colors.color
+def color(text):
+    string = ""
+    for l in text["before"]:
+        string += l
+    string += text["string"]
+    for l in text["after"]:
+        string += l
+    return string
+
 def generate_newspaper(sentences, whitespace,stats):
     final = []
     for i in sentences:
