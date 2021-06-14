@@ -51,10 +51,18 @@ def generate_newspaper(sentences, whitespace,stats):
         final.append(("¬| "+form(i, "$", table, stats)+" |¬").replace("  ", " "))
     final.append("\n")
     return final
-def register_item(item:dict, alias):
-    table[alias] = item["name"]
+def register_item(item:dict):
     items[item["name"]] = item
 
+def add_prop(name, alias, default_value):
+    table[name] = alias
+    statistics[name] = default_value
+
+def add_death(death:dict):
+    situations["situations"].append(death)
+
+def add_bonus(bonus:dict):
+    generation["situations"].append(bonus)
 
 def game_command(func):
     commands.append(func)
@@ -73,7 +81,7 @@ def leave(*args):
     save_stats(args[0], args[1])
     quit()
 @game_command
-def statistics(*args):
+def stats(*args):
     print(args[1])
 
 @game_command
@@ -193,24 +201,29 @@ def clear(*args):
     os.system('clear')
             
 
-
+with open("items.json") as l:
+        items = json.load(l)
+with open("situations.json") as l:
+        situations = json.load(l)   
+with open("generation.json") as l:
+    generation = json.load(l)
 
 def main():
-    global situations, generation, items
-    with open("situations.json") as l:
-        situations = json.load(l)   
-    with open("generation.json") as l:
-        generation = json.load(l)
-    with open("items.json") as l:
-        items = json.load(l)
-
+    global situations, generation, items, statistics
+    
+    
     console = input(color({"after":["\033[0m"],"before":["\033[92m"],"string":"Hello! How are you today! Enter a Command ([Load] for loading a Save File, [Create] for creating a new game)"})).lower()
 
     if console == "create":
         print("Note that you can't name two characters the same or your save files will be corrupted.")
         newbie = True
         name = input("Please Enter the Name of your Character: ")
-        statistics = {"name":name, "money":10, "items":[], "people":0}
+        statistics["name"] = name
+        statistics["money"] = 10
+        statistics["items"] = []
+        statistics["people"] = 0
+        statistics["enemies"] = 0
+        statistics["days"] = 0
         f=open(name+".json", "w+")
     elif console == "load":
         name = input("Please Enter the Name of your Character: ")

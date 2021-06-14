@@ -17,7 +17,7 @@
             "random":[true, 10]
         },
         {
-            "sentences":["The $e enemies have recruited a new soldier!"],
+            "sentences":["The now $e enemies have recruited a new soldier!"],
             "effects":[
                 {
                     "property":"enemies","operand":"+", "right":1
