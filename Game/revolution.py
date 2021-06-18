@@ -55,8 +55,11 @@ def generate_newspaper(sentences, whitespace,stats):
     return final
 def render_news(news):
     for i in news:
-            print(color({"before":["\033[91m"], "string":i, "after":["\033[0m"]}))
-            time.sleep(0.2)
+        for l in i:
+                print(color({"before":["\033[91m"], "string":l, "after":["\033[0m"]}), end="")
+                time.sleep(0.07)
+                sys.stdout.flush()
+        print("\n")
 def register_item(item:dict):
     items[item["name"]] = item
 
@@ -135,7 +138,7 @@ def trigger_sit(name):
 
 @game_command
 def buy(*args):
-    if random.randint(0,100) <= 50:
+    if random.randint(0,100) <= 80:
         print("The shop is closed at the moment.")
         return;
     else:
@@ -144,9 +147,16 @@ def buy(*args):
     for i in args[3]:
         roll = random.randint(0,100)
         if roll <= args[3][i]["probability"]:
-            shop.append(i)
+            shop.append(args[3][i])
     for i in shop:
-        print(args[3][i]["name"], args[3][i]["description"], "price : " + str(args[3][i]["price"]))
+        print(i["name"], i["description"], "price : " + str(i["price"]))
+    item = input("please put in the name of the item you want to buy: ")
+    for i in args[3]:
+        if args[3][i]["name"] == item:
+            print("Item found in stock!")
+            args[1]["money"] -= 10
+            args[1]["items"].append(args[3][i])
+    del shop
 
 
 @game_command
