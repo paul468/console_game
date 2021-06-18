@@ -1,0 +1,9 @@
+{
+    "people":{
+        "name":"people attack",
+        "func":"people_attack",
+        "price":10,
+        "dmg":10,
+        "description":"Your people start smacking the target officer. Deals 10 Dmg."
+    }
+}

@@ -278,6 +278,7 @@ def main():
         statistics["enemies"] = 1000000
         statistics["days"] = 0
         statistics["noticed"] = False
+        statistics["attacks"] = []
         f=open(name+".json", "w+")
     elif console == "load":
         name = input("Please Enter the Name of your Character: ")
