@@ -1,7 +1,7 @@
 {
     "situations":[
         {
-            "name":"death_by_nothing",
+            "name":"death_by_nothings",
             "sentences":["The Government reports that the organisation $n","doesn't have any money or items.", "They were then taken and executed","for treason against the state.","The Government informs that the people","can now live safe without the dangers","of a riot."],
             "conditions":[{"property":"money", "operand":"<=", "comparand":0}, {"property":"people", "operand":">=", "comparand":2}, {"property":"items", "comparand":[], "operand":"="}],
             "func":"leave"
@@ -21,12 +21,19 @@
             "func":"notice"
         },
         {
-            "name":"test",
+            "name":"report",
             "sentences":[
-                "This is a test.",
-                "The enemy has noticed you: $%"
+                "Your spies have reported.",
+                "The enemy hasn't noticed you. yet."
             ],
-            "conditions":[],
+            "conditions":[
+                {
+                    "property":"noticed", "operand":"=", "comparand":false
+                },
+                {
+                    "property":"people", "operand":">=", "comparand":2
+                }
+            ],
             "func":"blank"
         }
     ]

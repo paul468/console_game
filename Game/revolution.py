@@ -135,7 +135,18 @@ def trigger_sit(name):
 
 @game_command
 def buy(*args):
-    print("The shop is closed at the moment.")
+    if random.randint(0,100) <= 50:
+        print("The shop is closed at the moment.")
+        return;
+    else:
+        print("The shop is open!")
+    shop = []
+    for i in args[3]["items"]:
+        roll = random.randint(0,100)
+        if roll <= i["probability"]:
+            shop.append(i)
+    for i in shop:
+        print(i["name"], i["description"], "price" + str(i["price"]))
 
 
 @game_command
@@ -243,7 +254,7 @@ def clear(*args):
     os.system('clear')
             
 
-with open("items.json") as l:
+with open("cards.json") as l:
         items = json.load(l)
 with open("situations.json") as l:
         situations = json.load(l)   
