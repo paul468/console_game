@@ -54,12 +54,23 @@ def generate_newspaper(sentences, whitespace,stats):
     return final
 def render_news(news):
     for i in news:
-        for char in i:
-            print(print(color({"before":["\033[91m"], "string":char, "after":["\033[0m"]})), end="")
-            sys.stdout.flush()
+            print(color({"before":["\033[91m"], "string":i, "after":["\033[0m"]}))
             time.sleep(0.2)
 def register_item(item:dict):
     items[item["name"]] = item
+
+def trigger_sit(name):
+    try:
+        for i in situations["situations"]:
+            if i["name"] == name:
+                news = generate_newspaper(i["sentences"])
+                render_news(news)
+                for i in triggers:
+                    if i.__name__ == i["func"]:
+                        i(f, stats, generation, items, situations)
+    except KeyError as e:
+        print("ERROR : ", "The developer forgot a bug here when he put in the wrong dict key!! How stupid of him! leaving and saving now...\n(Don't worry your save files are safe.)")
+        leave()
 
 def add_prop(name, alias, default_value):
 
