@@ -141,12 +141,12 @@ def buy(*args):
     else:
         print("The shop is open!")
     shop = []
-    for i in args[3]["items"]:
+    for i in args[3]:
         roll = random.randint(0,100)
-        if roll <= i["probability"]:
+        if roll <= args[3][i]["probability"]:
             shop.append(i)
     for i in shop:
-        print(i["name"], i["description"], "price" + str(i["price"]))
+        print(args[3][i]["name"], args[3][i]["description"], "price : " + str(args[3][i]["price"]))
 
 
 @game_command

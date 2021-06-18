@@ -4,6 +4,10 @@
         "func":"people_attack",
         "price":10,
         "dmg":10,
-        "description":"Your people start smacking the target officer. Deals 10 Dmg."
+        "description":"Your people start smacking officers. Deals 10 Dmg.",
+        "probability":50,
+        "requirements":[
+            {"property":"people", "operand":">=", "comparand":3}
+        ]
     }
 }
