@@ -17,7 +17,8 @@
             "sentences":["The Goverment has noticed your little... organization."],
             "conditions":[
                 {"property":"people", "operand":">=", "comparand":1000}
-            ]
+            ],
+            "func":"notice"
         }
     ]
 }

@@ -59,18 +59,7 @@ def render_news(news):
 def register_item(item:dict):
     items[item["name"]] = item
 
-def trigger_sit(name):
-    try:
-        for i in situations["situations"]:
-            if i["name"] == name:
-                news = generate_newspaper(i["sentences"])
-                render_news(news)
-                for i in triggers:
-                    if i.__name__ == i["func"]:
-                        i(f, stats, generation, items, situations)
-    except KeyError as e:
-        print("ERROR : ", "The developer forgot a bug here when he put in the wrong dict key!! How stupid of him! leaving and saving now...\n(Don't worry your save files are safe.)")
-        leave()
+
 
 def add_prop(name, alias, default_value):
 
@@ -91,6 +80,11 @@ def trigger_func(func):
     triggers.append(func)
     return func
 
+
+@trigger_func
+def notice(*args):
+    args[1]["noticed"] = True
+
 @game_command
 def reset(*args):
     args[1]["money"] = 10
@@ -101,11 +95,7 @@ def save_stats(*args):
     f.close()
     f=open(args[1]["name"]+".json", "r+")
 
-@game_command
-@trigger_func
-def leave(*args):
-    save_stats(args[0], args[1])
-    quit()
+
 @game_command
 def stats(*args):
     print(args[1])
@@ -116,6 +106,27 @@ def help(*args):
     print("Commands are: ")
     for i in commands:
         print(i.__name__)
+
+@game_command
+@trigger_func
+def leave(*args):
+    save_stats(args[0], args[1])
+    quit()
+
+
+
+def trigger_sit(name):
+    try:
+        for i in situations["situations"]:
+            if i["name"] == name:
+                news = generate_newspaper(i["sentences"], " ", statistics)
+                render_news(news)
+                for l in triggers:
+                    if l.__name__ == i["func"]:
+                        l(f, statistics, generation, items, situations)
+    except KeyError as e:
+        print("ERROR : ", "The developer forgot a bug here when he put in the wrong dict key!! How stupid of him! leaving and saving now...\n(Don't worry your save files are safe.)")
+        leave(f, statistics, generation, items, situations)
 
 @game_command
 def buy(*args):
