@@ -9,6 +9,12 @@
             "sentences":["You have no money. You died."],
             "conditions":[{"property":"money", "operand":"<=", "comparand":0}, {"property":"people", "operand":"<=", "comparand":1}],
             "func":"leave"
+        },
+        {
+            "sentences":["The Goverment has noticed your little... organization."],
+            "conditions":[
+                {"property":"people", "operand":">=", "comparand":1000}
+            ]
         }
     ]
 }

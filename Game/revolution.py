@@ -1,4 +1,4 @@
-import os, json, random, time
+import os, json, random, time, sys
 
 
 
@@ -52,6 +52,12 @@ def generate_newspaper(sentences, whitespace,stats):
         final.append(("¬| "+form(i, "$", table, stats)+" |¬").replace("  ", " "))
     final.append("\n")
     return final
+def render_news(news):
+    for i in news:
+        for char in i:
+            print(print(color({"before":["\033[91m"], "string":char, "after":["\033[0m"]})), end="")
+            sys.stdout.flush()
+            time.sleep(0.2)
 def register_item(item:dict):
     items[item["name"]] = item
 
@@ -109,10 +115,7 @@ def buy(*args):
 def debug(*args):
     args[1]["money"] -= 1
 
-def render_news(news):
-    for i in news:
-        print(color({"before":["\033[91m"], "string":i, "after":["\033[0m"]}))
-        time.sleep(0.3)
+
 def compare(i, args):
         cons = []
         met = True
