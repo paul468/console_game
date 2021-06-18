@@ -19,6 +19,15 @@
                 {"property":"people", "operand":">=", "comparand":1000}
             ],
             "func":"notice"
+        },
+        {
+            "name":"test",
+            "sentences":[
+                "This is a test.",
+                "The enemy has noticed you: $%"
+            ],
+            "conditions":[],
+            "func":"blank"
         }
     ]
 }

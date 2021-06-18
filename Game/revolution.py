@@ -20,7 +20,8 @@ table = {
 "i":"items",
 "p":"people",
 "n":"name",
-"e":"enemies"
+"e":"enemies",
+"%":"noticed"
 }
 def form(string,symbol,table,stats):
     f = []
@@ -95,6 +96,10 @@ def save_stats(*args):
     f.close()
     f=open(args[1]["name"]+".json", "r+")
 
+
+@trigger_func
+def blank(*args):
+    pass
 
 @game_command
 def stats(*args):
