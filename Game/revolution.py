@@ -1,4 +1,4 @@
-import os, json, random, time, sys
+import os, json, random, time, sys, inspector
 
 
 
@@ -109,16 +109,25 @@ def infiltrate(*args):
     print("Legend: \n0: Gate\n=: Wall\nG: Guards")
     states = [
     [
-"=""=""=""=""=""=""=""=""=""=""=""0""0""=""=""=","=","=","=","=","=","=","=","=",
-=       G  GG  G       =
-=       G      G       =
-========================
+"=","=","=","=","=","=","=","=","=","=","=","0","0","=","=","=","=","=","=","=","=","=","=","=",
+"="," "," "," "," "," "," "," ","G"," "," ","G","G"," "," ","G"," "," "," "," "," "," "," ","=",
+"="," "," "," "," "," "," "," ","G"," "," "," "," "," "," ","G"," "," "," "," "," "," "," ","=",
+"=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=","=",
     ]
 ]
     map = random.choice(states)
-    print(map)
+    for i in range(len(map)-1):
+        if i % 24 == 0:
+            print("\n")
+        else:
+            print(map[i], end="")
+    print("\n")
     while not exited:
-        cons = input("Enter an infiltration command ([map] for the current overview of the map): ")
+        cons = input("Enter an infiltration command ([map] for the current overview of the map , [move] to open up the moving menu.): ")
+        if cons == "map":
+            i = inspector.inspector(map, args[1])
+            i.generate_interface()
+            print(i.interface)
 
 @game_command
 def stats(*args):
