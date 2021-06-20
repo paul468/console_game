@@ -64,7 +64,6 @@ def register_item(item:dict):
     items[item["name"]] = item
 
 
-
 def add_prop(name, alias, default_value):
 
     table[name] = alias
@@ -103,6 +102,23 @@ def save_stats(*args):
 @trigger_func
 def blank(*args):
     pass
+
+@game_command
+def infiltrate(*args):
+    exited = False
+    print("Legend: \n0: Gate\n=: Wall\nG: Guards")
+    states = [
+    [
+"=""=""=""=""=""=""=""=""=""=""=""0""0""=""=""=","=","=","=","=","=","=","=","=",
+=       G  GG  G       =
+=       G      G       =
+========================
+    ]
+]
+    map = random.choice(states)
+    print(map)
+    while not exited:
+        cons = input("Enter an infiltration command ([map] for the current overview of the map): ")
 
 @game_command
 def stats(*args):
